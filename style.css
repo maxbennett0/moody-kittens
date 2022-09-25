@@ -123,10 +123,18 @@ button.btn-special:hover{
   border-radius: var(--corners);
 }
 
+
 .shadow{
   filter: drop-shadow(var(--shadow));
 }
 
+.kitten{
+  background-color:#3a3838;
+  height: 100px;
+  width: 100px;
+  margin: 0.5em;
+  border-radius: 50%;
+}
 
 .kitten img{
   filter: drop-shadow(2px 4px 6px #1b1b1b);
@@ -255,8 +263,24 @@ button.btn-special:hover{
   padding-bottom: 1.5em;
 }
 
+.w-15{
+  width: 15%;
+}
+
+.w-25{
+  width: 25%;
+}
+
 .w-50{
   width: 50%;
+}
+
+.h-25{
+  height: 25%;
+}
+
+.h-50{
+  height: 50%;
 }
 
 .text-center{

@@ -1,4 +1,8 @@
 let kittens = []
+let kittenMood = 100
+let currentKitten = {}
+loadKittens()
+drawKittens()
 /**
  * Called when submitting the new Kitten Form
  * This method will pull data from the form
@@ -7,6 +11,19 @@ let kittens = []
  * Then reset the form
  */
 function addKitten(event) {
+  event.preventDefault()
+  let form = event.target
+  
+  let kittenName = form.kittenName.value
+
+  currentKitten = kittens.find(kitten => kitten.name == kittenName)
+  if (!currentKitten){
+    currentKitten = {name: kittenName, mood: kittenMood, id: generateId()}
+    kittens.push(currentKitten)
+    saveKittens()
+  }
+
+  form.reset()
 }
 
 /**
@@ -14,6 +31,8 @@ function addKitten(event) {
  * Saves the string to localstorage at the key kittens 
  */
 function saveKittens() {
+  window.localStorage.setItem("kittens", JSON.stringify(kittens))
+  drawKittens()
 }
 
 /**
@@ -22,12 +41,21 @@ function saveKittens() {
  * the kittens array to the retrieved array
  */
 function loadKittens() {
+  let kittensData = JSON.parse(window.localStorage.getItem("kittens"))
+  if (kittensData) {
+    kittens = kittensData
+  }
+  drawKittens()
 }
 
 /**
  * Draw all of the kittens to the kittens element
  */
 function drawKittens() {
+  let kittenBoardName = document.getElementById("kittenBoardName")
+  let kittenBoardMood = document.getElementById("kittenBoardMood")
+  kittenBoardName?.append(currentKitten)
+  kittenBoardMood?.append(currentKitten)
 }
 
 
